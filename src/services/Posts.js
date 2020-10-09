@@ -24,7 +24,9 @@ class Posts {
         return axios.put(`/posts/${post.id}`, post);
     }
 
-
+    delete(id)  {
+        return axios.delete(`/posts/${id}`);
+    }
 }
 
 export const posts = new Posts();

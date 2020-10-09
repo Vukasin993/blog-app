@@ -5,6 +5,7 @@
       <li>{{post.title}}</li>
       <router-link :to="{ name: 'view-post', params: { id: post.id } }">View Post</router-link>
       <router-link :to="{ name: 'edit', params: { id: post.id } }">Edit</router-link>
+       <button @click="deletePost(post.id)">Delete</button>
 
     </ul>
   </div>
@@ -26,7 +27,17 @@ export default {
 
   async created() {
     this.posts = await posts.getAll()
+  },
+
+  methods: {
+      deletePost(id) {
+      posts.delete(id).then(() => {
+       posts.getAll().then((data)=> {
+          this.posts = data
+        })
+      });
   }
+}
 }
 </script>
 

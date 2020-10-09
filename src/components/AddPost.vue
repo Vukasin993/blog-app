@@ -38,7 +38,9 @@ export default {
   },
 
   async created() {
-      this.post = (await posts.getOne(this.$route.params.id)).data
+      if(this.$route.params.id) {
+        this.post = (await posts.getOne()).data
+      }
      
     },
 
