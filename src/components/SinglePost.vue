@@ -1,11 +1,9 @@
 <template>
-  <div class="hello">
-    <h1> POSTS</h1>
-    <ul v-for="(post, index) in posts" :key="index">
-      <li>{{post.title}}</li>
-      <router-link :to="{ name: 'view-post', params: { id: post.id } }">View Post</router-link>
-    </ul>
-  </div>
+        <div class="hello">
+            <h1> {{post.title}}</h1>
+            <div>{{post.text}}</div>
+            <p>{{post.createdAt}}</p>
+        </div>
 </template>
 
 <script>
@@ -18,13 +16,23 @@ export default {
 
   data() {
     return {
-      posts: []
+      post: []
     }
   },
 
   async created() {
-    this.posts = await posts.getAll()
-  }
+      this.post = (await posts.getOne(this.$route.params.id)).data
+     
+    },
+
+  methods: {
+    getPost() {
+        posts.getOne(this.$route.params.id).then((data) => {
+            console.log(data)
+          this.post = data;
+        });
+  },
+}
 }
 </script>
 

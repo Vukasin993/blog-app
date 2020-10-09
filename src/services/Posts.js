@@ -11,6 +11,10 @@ class Posts {
         return response.data
     }
 
+    getOne(id) {
+        return axios.get(`/posts/${id}`);
+    }
+
 
 }
 
