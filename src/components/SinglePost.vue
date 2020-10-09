@@ -3,20 +3,26 @@
             <h1> {{post.title}}</h1>
             <div>{{post.text}}</div>
             <p>{{post.createdAt}}</p>
+
+            <div>Comments: </div>
+            <AddComment @add="addComment"/>
+            
         </div>
 </template>
 
 <script>
 import {posts} from '../services/Posts'
+import AddComment from './AddComment'
 
 
 export default {
   name: 'posts',
-
+    components: { AddComment},
 
   data() {
     return {
-      post: []
+      post: [],
+
     }
   },
 
@@ -32,6 +38,10 @@ export default {
           this.post = data;
         });
   },
+
+  addComment(comment) {
+      posts.addComment(comment ,this.$route.params.id)
+  }
 }
 }
 </script>

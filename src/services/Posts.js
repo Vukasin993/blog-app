@@ -17,7 +17,7 @@ class Posts {
     }
 
     getOne(id) {
-        return axios.get(`/posts/${id}`);
+        return axios.get(`/posts/${id}?filter={"include":["comments"]}`);
     }
 
     edit(post)  {
@@ -26,6 +26,11 @@ class Posts {
 
     delete(id)  {
         return axios.delete(`/posts/${id}`);
+    }
+
+    addComment(comment, postId) {
+        console.log(comment)
+        return axios.post(`posts/${postId}/comments`, comment)
     }
 }
 
