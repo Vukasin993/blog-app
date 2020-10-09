@@ -5,13 +5,13 @@
   <div class="form-group row">
     <label for="title" class="col-sm-2 col-form-label">Title</label>
     <div class="col-sm-10">
-      <input v-model="post.title" type="text" class="form-control"  placeholder="Title">
+      <input v-model="post.title" type="text" required="required" minlength="2" class="form-control"  placeholder="Title">
     </div>
   </div>
   <div class="form-group row">
     <label for="content" class="col-sm-2 col-form-label">Content</label>
     <div class="col-sm-10">
-      <input v-model="post.text" type="text" class="form-control" placeholder="Content">
+      <input v-model="post.text" type="text" required="required" maxlength="300" class="form-control" placeholder="Content">
     </div>
   </div>
   <button>Submit</button>
