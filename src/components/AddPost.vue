@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1> Add post</h1>
-<form @submit.prevent="addPost">
+<form @submit.prevent="addPost" @reset="onReset">
   <div class="form-group row">
     <label for="title" class="col-sm-2 col-form-label">Title</label>
     <div class="col-sm-10">
@@ -15,6 +15,7 @@
     </div>
   </div>
   <button>Submit</button>
+  <button name="reset" type="reset" class="btn btn-default">Reset</button>
   </form>
   </div>
 </template>
@@ -42,6 +43,12 @@ export default {
     },
 
 methods: {
+     onReset () {
+            this.$data.title = '',
+            this.$data.text= '',
+            this.$router.push({ name: 'add'}).catch(()=>{});
+        },
+
     addPost() {
         console.log(this.post)
          posts.add(this.post)
