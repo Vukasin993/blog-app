@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1> Add post</h1>
-<form @submit.prevent="addPost" @reset="onReset">
+<form @submit.prevent="onSubmit" @reset="onReset">
   <div class="form-group row">
     <label for="title" class="col-sm-2 col-form-label">Title</label>
     <div class="col-sm-10">
@@ -37,9 +37,9 @@ export default {
     
   },
 
-     created() {
-
-      
+  async created() {
+      this.post = (await posts.getOne(this.$route.params.id)).data
+     
     },
 
 methods: {
@@ -60,7 +60,22 @@ methods: {
             console.log(data)
           this.post = data;
         });
-    }
+    },
+
+
+      editPost() {
+         posts.edit(this.post).then(() => {
+          this.$router.push('/posts');
+        });
+      },
+
+      onSubmit() {
+        if (this.post.id) {
+          this.editPost();
+        } else {
+          this.addPost();
+        }
+      }
 }
 }
 </script>

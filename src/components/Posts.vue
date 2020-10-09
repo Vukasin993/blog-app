@@ -4,6 +4,8 @@
     <ul v-for="(post, index) in posts" :key="index">
       <li>{{post.title}}</li>
       <router-link :to="{ name: 'view-post', params: { id: post.id } }">View Post</router-link>
+      <router-link :to="{ name: 'edit', params: { id: post.id } }">Edit</router-link>
+
     </ul>
   </div>
 </template>

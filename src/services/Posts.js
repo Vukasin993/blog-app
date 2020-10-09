@@ -12,13 +12,16 @@ class Posts {
     }
 
     add(data) {
-        console.log(data)
         return axios.post('/posts', data);
         
     }
 
     getOne(id) {
         return axios.get(`/posts/${id}`);
+    }
+
+    edit(post)  {
+        return axios.put(`/posts/${post.id}`, post);
     }
 
 
