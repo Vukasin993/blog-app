@@ -1,15 +1,29 @@
 <template>
   <div class="hello">
     <h1> POSTS</h1>
-   
+    <ul v-for="(post, index) in posts" :key="index">
+      <li>{{post.title}}</li>
+    </ul>
   </div>
 </template>
 
 <script>
+import {posts} from '../services/Posts'
+
+
 export default {
   name: 'posts',
-  props: {
-    
+
+
+  data() {
+    return {
+      posts: []
+    }
+  },
+
+  async created() {
+    console.log('ovde')
+    this.posts = await posts.getAll()
   }
 }
 </script>
